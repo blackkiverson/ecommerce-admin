@@ -14,10 +14,14 @@ import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
 
 
+/* The code `const formSchema = z.object({ name: z.string().min(1) });` is defining a form schema using
+the `zod` library. */
 const formSchema = z.object({
   name: z.string().min(1),
 });
 
+/* The code `export const StoreModal = () => { ... }` is defining a React functional component called
+`StoreModal`. */
 export const StoreModal = () => {
     const storeModal = useStoreModal();
 
@@ -36,7 +40,13 @@ export const StoreModal = () => {
 
         const response = await axios.post('/api/stores', values);
 
-        toast.success("Store created.");
+        /* 'using a back tick.' */
+        /* `window.location.assign(`/${response.data.id}`);` is used to redirect the user to a new URL.
+        In this case, it is redirecting the user to a URL that includes the `id` property from the
+        `response.data` object. The `response.data.id` is interpolated into the URL string using
+        template literals. */
+        window.location.assign(`/${response.data.id}`);
+
       } catch (error) {
         toast.error("Something went wrong!");
       } finally {
