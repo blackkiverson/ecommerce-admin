@@ -40,19 +40,14 @@ export const StoreModal = () => {
 
         const response = await axios.post('/api/stores', values);
 
-        /* 'using a back tick.' */
-        /* `window.location.assign(`/${response.data.id}`);` is used to redirect the user to a new URL.
-        In this case, it is redirecting the user to a URL that includes the `id` property from the
-        `response.data` object. The `response.data.id` is interpolated into the URL string using
-        template literals. */
         window.location.assign(`/${response.data.id}`);
 
       } catch (error) {
-        toast.error("Something went wrong!");
+        toast.error("Something went wrong");
       } finally {
         setLoading(false);
       }
-    }
+    };
 
     return (
       <Modal
