@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { AlertModal } from "@/components/modals/alert-modal";
+import { ApiAlert } from "@/components/ui/api-alert";
 
 interface SettingsFormProps {
     initialData: Store;
@@ -81,15 +82,20 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
 
     return (
       <>
-      <AlertModal
-        isOpen={open}
-        onClose={() => setOpen(false)}
-        onConfirm={onDelete}
-        loading={loading}
-      />
+        <AlertModal
+          isOpen={open}
+          onClose={() => setOpen(false)}
+          onConfirm={onDelete}
+          loading={loading}
+        />
         <div className="flex items-center justify-between">
           <Heading title="Settings" description="Manage store preferences" />
-          <Button disabled={loading} variant={"destructive"} size="sm" onClick={() => setOpen(true)}>
+          <Button
+            disabled={loading}
+            variant={"destructive"}
+            size="sm"
+            onClick={() => setOpen(true)}
+          >
             <Trash className="h-4 w-4" />
           </Button>
         </div>
@@ -113,15 +119,21 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage/>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
             </div>
             <Button disabled={loading} className="ml-auto" type="submit">
-                Save changes
+              Save changes
             </Button>
           </form>
+          <Separator />
+          <ApiAlert
+            title="NEXT_PUBLIC_API_URL"
+            description={`${origin}/api/${params.storeId}`}
+            variant={"public"}
+          />
         </Form>
       </>
     );
