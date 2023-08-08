@@ -69,7 +69,7 @@ export default function StoreSwitcher({
                 <Command>
                     <CommandList>
                         <CommandInput placeholder="Search store..." />
-                        <CommandEmpty>No Store Found!</CommandEmpty>
+                        <CommandEmpty>No store found.</CommandEmpty>
                         <CommandGroup heading="Stores">
                             {formattedItems.map((store) => (
                                 <CommandItem
@@ -80,6 +80,7 @@ export default function StoreSwitcher({
                                     <StoreIcon className="mr-2 h-4 w-4"/>
                                     {store.label}
                                     <Check 
+                                        // custom style using cn...
                                         className={cn(
                                         "ml-auto h-4 w-4",
                                         currentStore?.value === store.value
