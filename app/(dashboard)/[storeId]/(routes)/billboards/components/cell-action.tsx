@@ -48,11 +48,11 @@ export const CellAction: React.FC<CellActionProps> = ({
 
     return (
       <>
-        <AlertModal 
-            isOpen={open}
-            onClose={() => setOpen(false)}
-            onConfirm={onDelete}
-            loading={loading}
+        <AlertModal
+          isOpen={open}
+          onClose={() => setOpen(false)}
+          onConfirm={onDelete}
+          loading={loading}
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -69,7 +69,7 @@ export const CellAction: React.FC<CellActionProps> = ({
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem onClick={() => onCopy(data.id)}>
-              <Copy className="mr-2 h-4 w-4" />
+              <Copy color="blue" className="mr-2 h-4 w-4" />
               Copy ID
             </DropdownMenuItem>
             <DropdownMenuItem
@@ -77,11 +77,11 @@ export const CellAction: React.FC<CellActionProps> = ({
                 router.push(`/${params.storeId}/billboards/${data.id}`)
               }
             >
-              <Edit className="mr-2 h-4 w-4" />
+              <Edit color="orange" className="mr-2 h-4 w-4" />
               Update
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => setOpen(true)}>
-              <Trash className="mr-2 h-4 w-4" />
+              <Trash color="red" className="mr-2 h-4 w-4" />
               Delete
             </DropdownMenuItem>
           </DropdownMenuContent>
