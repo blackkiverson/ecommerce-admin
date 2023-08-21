@@ -11,14 +11,14 @@ import { DataTable } from "@/components/ui/data-table";
 import { CategoryColumn, columns } from "./columns";
 import { ApiList } from "@/components/ui/api-list";
 
-interface CategoryClientProps {
+interface CategoriesClientProps {
     data: CategoryColumn[]
 }
 
 /**
  * The BillboardClient component renders a heading and a button to manage billboards for a store.
  */
-export const CategoryClient: React.FC<CategoryClientProps> = ({
+export const CategoriesClient: React.FC<CategoriesClientProps> = ({
     data
 }) => {
     const router = useRouter();
