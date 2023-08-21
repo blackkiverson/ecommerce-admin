@@ -11,7 +11,7 @@ import { useStoreModal } from "@/hooks/use-store-modal";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import toast from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
 
 /* The code `const formSchema = z.object({ name: z.string().min(1) });` is defining a form schema using
@@ -37,9 +37,20 @@ export const StoreModal = () => {
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
       try {
         setLoading(true);
-        const response = await axios.post('/api/stores', values);
-        window.location.assign(`/${response.data.id}`);
+        const response = await axios.post("/api/stores", values);
+
+        // Check if the response is an Axios error
+        if (axios.isAxiosError(response)) {
+          // Handle Axios errors
+          console.error("Axios Error:", response.message);
+          toast.error("Something went wrong with the request.");
+        } else {
+          // Handle a successful response
+          toast.success("Store Created");
+          window.location.assign(`/${response.data.id}`);
+        }
       } catch (error) {
+        console.error("General Error:", error);
         toast.error("Something went wrong");
       } finally {
         setLoading(false);
