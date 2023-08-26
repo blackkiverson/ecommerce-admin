@@ -6,7 +6,7 @@ import { CellAction } from "./cell-action";
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 export type CategoryColumn = {
-  id: any;
+  id: string;
   name: string;
   billboardLabel: string;
   createdAt: string;
