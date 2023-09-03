@@ -1,6 +1,6 @@
 import prismadb from "@/lib/prismadb";
 
-import { ColorForm } from "./components/color-form";
+import { ProductForm } from "./components/product-form";
 
 /**
  * The function `BillboardPage` is a TypeScript React component that retrieves a billboard object based
@@ -10,27 +10,53 @@ import { ColorForm } from "./components/color-form";
  * @returns A JSX element is being returned. Specifically, a `<div>` element with the text "This is a
  * form for billboards".
  */
-const ColorPage = async ({
+const ProductPage = async ({
     params
 }: {
-    params: { colorId: string }
+    params: { productId: string, storeId: string }
 }) => {
     /* The code `const billboard = await prismadb.billboard.findUnique({ where: { id:
     params.billboardId } })` is retrieving a specific billboard object from the database based on
     the provided `billboardId` parameter. */
-    const color = await prismadb.color.findUnique({
+    const product = await prismadb.product.findUnique({
         where: {
-            id: params.colorId
+            id: params.productId
+        },
+        include: {
+            images: true
         }
     })
+
+    const categories = await prismadb.category.findMany({
+        where: {
+            storeId: params.storeId,
+        }
+    })
+
+    const sizes = await prismadb.size.findMany({
+      where: {
+        storeId: params.storeId,
+      },
+    });
+
+    const colors = await prismadb.color.findMany({
+      where: {
+        storeId: params.storeId,
+      },
+    });
 
     return ( 
         <div className="flex-col">
             <div className="flex-1 space-y-4 p-8 pt-6">
-                <ColorForm initialData={color}/>
+                <ProductForm 
+                    categories={categories}
+                    colors={colors}
+                    sizes={sizes}
+                    initialData={product}
+                />
             </div>
         </div>
     );
 }
  
-export default ColorPage;
+export default ProductPage;
