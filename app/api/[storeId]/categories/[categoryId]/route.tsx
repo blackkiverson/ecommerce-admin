@@ -9,13 +9,16 @@ export async function GET(
 ) {
   try {
     if (!params.categoryId) {
-      return new NextResponse("Billboard id is required", { status: 400 });
+      return new NextResponse("Category id is required", { status: 400 });
     }
 
     const category = await prismadb.category.findUnique({
       where: {
         id: params.categoryId,
       },
+      include: {
+        billboard: true,
+      }
     });
     
     return NextResponse.json(category);
