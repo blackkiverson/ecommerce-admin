@@ -6,6 +6,11 @@ import { ClerkProvider } from '@clerk/nextjs'
 
 import { ModalProvider } from '@/providers/modal-provider'
 import { ToasterProvider } from '@/providers/toast-provider'
+<<<<<<< Updated upstream
+=======
+import { ThemeProvider } from '@/providers/theme-provider'
+import Script from 'next/script'
+>>>>>>> Stashed changes
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,6 +24,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
+
   return (
     <ClerkProvider>
       <html lang="en">

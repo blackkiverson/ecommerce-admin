@@ -4,13 +4,16 @@
         "cloudinary",
         "clsx",
         "hookform",
+        "integrationbuilder",
         "lucide",
         "nextjs",
+        "PAYLATER",
         "prismadb",
         "tanstack",
         "textmap",
         "toastmessage",
         "trpc",
+        "VENMO",
         "zustand"
     ]
 }
